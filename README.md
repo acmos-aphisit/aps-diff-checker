@@ -61,6 +61,4 @@ next.config.js                # static export config
 ```
 
 ## Action URL
-```
 URL : https://acmos-aphisit.github.io/aps-diff-checker/
-```
