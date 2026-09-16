@@ -1,19 +1,16 @@
 /** @type {import('next').NextConfig} */
 
-// When deploying to GitHub Pages as a project site (https://<user>.github.io/<repo>/),
-// the site is served from a sub-path, so we need basePath/assetPrefix set to the repo name.
-// The workflow sets NEXT_PUBLIC_BASE_PATH automatically from the repository name.
-// If you deploy elsewhere (Vercel, a custom domain, a user/organization page at the
-// root path, etc.), leave NEXT_PUBLIC_BASE_PATH unset and this falls back to "".
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
+// output: "export" produces a static ./out folder that GitHub Pages can serve.
+//
+// basePath/assetPrefix are intentionally left out here: the deploy workflow uses
+// actions/configure-pages with `static_site_generator: next`, which injects the
+// correct basePath (and images.unoptimized) into this file automatically at build
+// time, based on whether this repo is a project site (served from /<repo-name>/)
+// or a user/organization site (served from /). If you deploy elsewhere (Vercel, a
+// custom domain, your own server) and aren't using that action, set basePath here
+// yourself instead.
 const nextConfig = {
   output: "export",
-  basePath,
-  assetPrefix: basePath,
-  images: {
-    unoptimized: true,
-  },
 };
 
 module.exports = nextConfig;
